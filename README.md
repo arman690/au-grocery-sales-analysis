@@ -45,3 +45,30 @@ It includes information on a selected list of categories of grocery products in 
 
 4. **Dashboard / Visualization**  
    - Create charts & dashboards for sales insights.
+
+
+---
+
+## Repository Structure
+retail-sales-analytics/
+├── data/ # Original dataset CSV
+├── notebooks/ # Python notebooks
+│ └── retail_analysis.ipynb
+├── sql/ # SQL queries
+│ └── sales_queries.sql
+├── dashboard/ # Power BI / Tableau files
+│ └── retail_dashboard.pbix
+└── README.md
+
+---
+
+## How to Use
+1. Clone the repository  
+git clone https://github.com/arman690/au-grocery-sales-analysis.git
+
+yaml
+Copy code
+2. Explore the notebooks to understand data cleaning and analysis  
+3. Run SQL queries if using a database  
+4. Open dashboard files in Power BI or Tableau for visualization
+
