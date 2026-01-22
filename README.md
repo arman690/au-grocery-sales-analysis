@@ -1,74 +1,125 @@
-# AU Grocery Sales Analytics
+# 🛒 Australian Grocery Retail Price Analysis
 
-**End-to-end analysis of Australian grocery products from Coles, including pricing, stock, and category insights. Cleaned, analyzed, and visualized for business analytics and dashboard projects.**
+## 📌 Project Overview
 
----
+This project analyzes grocery product pricing data collected from **coles.com.au** across Australia. The main goal is to investigate whether promotional pricing labeled as **“Special”** truly offers value to consumers when prices are normalized by unit size.
 
-## Dataset
-This project uses a grocery products dataset extracted from the Grocery department of [coles.com.au](https://www.coles.com.au/).  
-It includes information on a selected list of categories of grocery products in Australia, including pricing and stock details.
-
-**Columns include:**
-- `Postal Code`: The postal code of the store or product location.
-- `Category` / `Subcategory`: Product classification.
-- `Product Group` / `Product Name` / `Brand` / `SKU Number`
-- `Package Price` / `Unit Price` / `Package Size` / `Unit Price Unit`
-- `Retail Price` / `Estimated Status` / `Special Status` / `Stock Status`
-- `Product URL` / `Run Date`
+The analysis focuses on **unit price fairness**, **category-level pricing behavior**, and **estimated consumer overpayment** caused by misleading promotions.
 
 ---
 
-## Project Goal
-- Analyze pricing trends, product availability, and category performance.  
-- Extract insights for business decisions, such as identifying top-selling products and monthly sales trends.  
-- Build dashboards to visualize data and support decision-making.
+## 🎯 Key Business Questions
+
+1. Are *Special* products genuinely cheaper than non-special products?
+2. Which product categories misuse the *Special* label the most?
+3. How volatile are prices within the same category?
+4. How much money do consumers potentially lose due to misleading promotions?
 
 ---
 
-## Key Skills
-- **Python** (pandas, matplotlib/seaborn)  
-- **SQL** (data aggregation, joins, window functions)  
-- **Data Visualization** (Power BI / Tableau)  
-- **Analytics & Business Insights**
+## 📂 Dataset Description
+
+* **Source:** Coles Australia (Grocery Department)
+* **Coverage:** Multiple Australian states and cities
+* **Rows:** ~488,000 products
+* **Key Fields:**
+
+  * Category / Sub-category
+  * Package price
+  * Unit price
+  * Package size (text-based: e.g. `500g`, `1kg`)
+  * Special flag (`is_special`)
+  * Location (state, city, postal code)
+
+> ⚠️ Raw CSV files exceed GitHub size limits and are therefore excluded. A data dictionary and processing logic are fully documented in the notebook.
 
 ---
 
-## Project Workflow
-1. **Data Cleaning & Exploration**  
-   - Remove duplicates, handle missing values, compute new metrics like `TotalSales`.
+## 🧹 Data Cleaning & Preparation
 
-2. **KPI Calculation**  
-   - Total sales, top products, monthly trends, category performance.
-
-3. **SQL Queries**  
-   - Aggregate sales, top products, monthly breakdowns.
-
-4. **Dashboard / Visualization**  
-   - Create charts & dashboards for sales insights.
-
+* Parsed package size from text into numeric grams/ml
+* Normalized prices to **price per 100g/ml** for fair comparison
+* Handled missing values and inconsistent unit formats
+* Verified calculated unit prices against provided values
 
 ---
 
-## Repository Structure
+## 🔍 Analysis Summary
+
+### 1️⃣ Special vs Non-Special Pricing
+
+* Special products have lower *average package prices*
+* **Median unit prices show little to no real discount**
+* Many specials are cheaper per package but **not cheaper per unit**
+
+### 2️⃣ Category Abuse of “Special” Labels
+
+* Certain categories consistently label products as *Special* despite higher-than-median unit prices
+* Indicates promotional pricing is not always consumer-friendly
+
+### 3️⃣ Price Dispersion & Outliers
+
+* Significant price variation exists within the same categories
+* High dispersion increases the risk of consumer overpayment
+* Outliers identified using IQR-based detection
+
+### 4️⃣ Estimated Consumer Loss 💰
+
+* Calculated excess cost where *Special* unit prices exceed category baselines
+* Aggregated losses reveal categories with the highest potential consumer harm
+
+---
+
+## 📊 Key Insights
+
+* Promotional pricing does **not guarantee better value**
+* Unit price normalization is critical for fair comparison
+* Some categories systematically misuse discount labels
+* Consumers may overpay significantly due to misleading promotions
+
+---
+
+## 🛠️ Tools & Technologies
+
+* Python (Pandas, NumPy)
+* Jupyter Notebook
+* Matplotlib / Seaborn
+* Statistical testing (Mann–Whitney U)
+* Git & GitHub
+
+---
+
+## 📁 Project Structure
+
+```
 retail-sales-analytics/
-├── data/ # Original dataset CSV
-├── notebooks/ # Python notebooks
-│ └── retail_analysis.ipynb
-├── sql/ # SQL queries
-│ └── sales_queries.sql
-├── dashboard/ # Power BI / Tableau files
-│ └── retail_dashboard.pbix
+├── data/                # Dataset schema & notes (CSV excluded)
+├── notebooks/           # Data analysis notebooks
+│   └── retail_analysis.ipynb
+├── sql/                 # SQL queries (optional extension)
+├── dashboard/           # BI dashboards (Power BI / Tableau)
 └── README.md
+```
 
 ---
 
-## How to Use
-1. Clone the repository  
-git clone https://github.com/arman690/au-grocery-sales-analysis.git
+## 🚀 Future Improvements
 
-yaml
-Copy code
-2. Explore the notebooks to understand data cleaning and analysis  
-3. Run SQL queries if using a database  
-4. Open dashboard files in Power BI or Tableau for visualization
+* Time-based price trend analysis
+* Brand-level pricing fairness
+* Predictive model for misleading promotions
+* Interactive dashboard deployment
 
+---
+
+## 👤 Author
+
+**Arman Rostami**
+Aspiring Data Analyst / Data Engineer
+Australia 🇦🇺
+
+---
+
+## 📌 Disclaimer
+
+This project is for educational and analytical purposes only. Pricing insights do not represent official claims against retailers.
